@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>Main.qml</file>
-        <file>assets/unave-5120x2880.png</file>
     </qresource>
 </RCC>

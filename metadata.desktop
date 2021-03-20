@@ -1,4 +1,4 @@
-Description=Minimalist theme for UnaveOS
+Description=Minimalist theme for FlateOS
 Type=sddm-theme
 Author=Romullo @hiukky
 Copyright=(c) 2021, Romullo @hiukky
@@ -8,4 +8,4 @@ MainScript=Main.qml
 ConfigFile=theme.conf
 Theme-Id=orion
 Theme-API=2.0
-Website=https://github.com/unaveos
+Website=https://github.com/flateos
