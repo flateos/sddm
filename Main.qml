@@ -129,7 +129,7 @@ Rectangle {
                         width: parent.width; height: 40
                         font.pixelSize: 13
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
-                        echoMode: TextInput.PasswordEchoOnEdit
+                        echoMode: TextInput.Password
                         palette.text: "white"
                         placeholderText: qsTr("Password")
                         background: Rectangle { color: "#14181E"; radius: 7 }
