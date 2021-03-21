@@ -85,7 +85,6 @@ Rectangle {
                         width: parent.width
                         height: 40
                         textRole: "name"
-                        currentIndex: -1
                         displayText: currentIndex === -1 ? qsTr("Session") : currentText
                         model: sessionModel
                         background: Rectangle { color: "#14181E"; radius: 7 }
@@ -166,15 +165,16 @@ Rectangle {
                         id: loginButton
                         text: qsTr("Login")
                         width: parent.btnWidth
-                        onClicked: sddm.login(name.text, password.text, sessionIndex)
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
                         palette.buttonText: "#23d18c"
                         background: Rectangle { color: "transparent" }
                         icon.source: "assets/icons/login-circle-fill.svg"
+
                         MouseArea {
                             hoverEnabled: true
                             anchors.fill: parent
                             cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: sddm.login(name.text, password.text, sessionIndex)
                         }
 
                     }
@@ -183,15 +183,16 @@ Rectangle {
                         id: shutdownButton
                         text: qsTr("Shutdown")
                         width: parent.btnWidth
-                        onClicked: sddm.powerOff()
                         KeyNavigation.backtab: loginButton; KeyNavigation.tab: rebootButton
                         palette.buttonText: "#FFE066"
                         background: Rectangle { color: "transparent" }
                         icon.source: "assets/icons/restart-fill.svg"
+
                         MouseArea {
                             hoverEnabled: true
                             anchors.fill: parent
                             cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: sddm.powerOff()
                         }
                     }
 
@@ -199,15 +200,16 @@ Rectangle {
                         id: rebootButton
                         text: qsTr("Reboot")
                         width: parent.btnWidth
-                        onClicked: sddm.reboot()
                         KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: name
                         palette.buttonText: "#E84855"
                         background: Rectangle { color: "transparent" }
                         icon.source: "assets/icons/shut-down-fill.svg"
+
                         MouseArea {
                             hoverEnabled: true
                             anchors.fill: parent
                             cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: sddm.reboot()
                         }
                     }
                 }
