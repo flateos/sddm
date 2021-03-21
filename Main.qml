@@ -57,38 +57,52 @@ Rectangle {
             anchors.centerIn: parent
             width: Math.max(320, mainColumn.implicitWidth + 50)
             height: Math.max(320, mainColumn.implicitHeight + 50)
-            color: "#191D23"
+            color: "transparent"
+            border.color: "#15EDD3"
+            border.width: 3
+            radius: 20
 
             Column {
                 id: mainColumn
                 anchors.centerIn: parent
                 spacing: 12
 
-                Text {
+                Image {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    color: "white"
                     verticalAlignment: Text.AlignVCenter
-                    height: text.implicitHeight
-                    width: parent.width
-                    text: qsTr("Welcome", sddm.hostName)
-                    wrapMode: Text.WordWrap
-                    font.pixelSize: 26
-                    elide: Text.ElideRight
+                    height: 150
+                    width: 150
                     horizontalAlignment: Text.AlignHCenter
+                    source: "assets/images/logo.svg"
+                }
+
+                Column {
+                    width: parent.width
+                    spacing : 4
+
+                    ComboBox {
+                        id: session
+                        width: parent.width
+                        height: 40
+                        textRole: "name"
+                        currentIndex: -1
+                        displayText: currentIndex === -1 ? qsTr("Session") : currentText
+                        model: sessionModel
+                        background: Rectangle { color: "#14181E"; radius: 7 }
+                        contentItem: Text {
+                          color: session.currentIndex === -1 ? "#8C8D8E" : "#ffffff"
+                          text: session.displayText
+                          font.pixelSize: 13;
+                          padding: 10
+                          verticalAlignment: Text.AlignVCenter;
+                          horizontalAlignment: Text.AlignLeft;
+                        }
+                    }
                 }
 
                 Column {
                     width: parent.width
                     spacing: 4
-
-                    Text {
-                        id: lblName
-                        width: parent.width
-                        color: "white"
-                        text: qsTr("Username")
-                        font.bold: true
-                        font.pixelSize: 12
-                    }
 
                     TextField  {
                         id: name
@@ -96,7 +110,8 @@ Rectangle {
                         text: userModel.lastUser
                         font.pixelSize: 13
                         palette.text: "white"
-                        background: Rectangle { color: "#0d1117" }
+                        placeholderText: qsTr("Username")
+                        background: Rectangle { color: "#14181E"; radius: 7 }
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                                 sddm.login(name.text, password.text, sessionIndex)
@@ -109,15 +124,6 @@ Rectangle {
                 Column {
                     width: parent.width
                     spacing : 4
-
-                    Text {
-                        id: lblPassword
-                        width: parent.width
-                        color: "white"
-                        text: qsTr("Password")
-                        font.bold: true
-                        font.pixelSize: 12
-                    }
 
                     TextField {
                         id: password
@@ -126,44 +132,13 @@ Rectangle {
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
                         echoMode: TextInput.PasswordEchoOnEdit
                         palette.text: "white"
-                        background: Rectangle { color: "#0d1117" }
+                        placeholderText: qsTr("Password")
+                        background: Rectangle { color: "#14181E"; radius: 7 }
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                                 sddm.login(name.text, password.text, sessionIndex)
                                 event.accepted = true
                             }
-                        }
-                    }
-                }
-
-                Column {
-                    width: parent.width
-                    spacing : 4
-
-                    Text {
-                        id: lblSession
-                        width: parent.width
-                        color: "white"
-                        text: qsTr("Session")
-                        wrapMode: TextEdit.WordWrap
-                        font.bold: true
-                        font.pixelSize: 12
-                    }
-
-                    ComboBox {
-                        id: session
-                        width: parent.width
-                        height: 40
-                        textRole: "name"
-                        model: sessionModel
-                        background: Rectangle { color: "#0d1117" }
-                        contentItem: Text {
-                          color : "#ffffff"
-                          text: session.displayText
-                          font.pixelSize: 12;
-                          padding: 10
-                          verticalAlignment: Text.AlignVCenter;
-                          horizontalAlignment: Text.AlignLeft;
                         }
                     }
                 }
@@ -186,14 +161,22 @@ Rectangle {
                     property int btnWidth: Math.max(loginButton.implicitWidth,
                                                     shutdownButton.implicitWidth,
                                                     rebootButton.implicitWidth, 80) + 8
+
                     Button {
                         id: loginButton
                         text: qsTr("Login")
                         width: parent.btnWidth
                         onClicked: sddm.login(name.text, password.text, sessionIndex)
                         KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
-                        palette.buttonText: "white"
-                        background: Rectangle { color: "#23D18C" }
+                        palette.buttonText: "#23d18c"
+                        background: Rectangle { color: "transparent" }
+                        icon.source: "assets/icons/login-circle-fill.svg"
+                        MouseArea {
+                            hoverEnabled: true
+                            anchors.fill: parent
+                            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        }
+
                     }
 
                     Button {
@@ -202,8 +185,14 @@ Rectangle {
                         width: parent.btnWidth
                         onClicked: sddm.powerOff()
                         KeyNavigation.backtab: loginButton; KeyNavigation.tab: rebootButton
-                        palette.buttonText: "white"
-                        background: Rectangle { color: "#5677FC" }
+                        palette.buttonText: "#FFE066"
+                        background: Rectangle { color: "transparent" }
+                        icon.source: "assets/icons/restart-fill.svg"
+                        MouseArea {
+                            hoverEnabled: true
+                            anchors.fill: parent
+                            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        }
                     }
 
                     Button {
@@ -212,8 +201,14 @@ Rectangle {
                         width: parent.btnWidth
                         onClicked: sddm.reboot()
                         KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: name
-                        palette.buttonText: "white"
-                        background: Rectangle { color: "#E84855" }
+                        palette.buttonText: "#E84855"
+                        background: Rectangle { color: "transparent" }
+                        icon.source: "assets/icons/shut-down-fill.svg"
+                        MouseArea {
+                            hoverEnabled: true
+                            anchors.fill: parent
+                            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        }
                     }
                 }
             }

@@ -27,7 +27,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
 
-set(TS_FILES orion_en_US.ts)
+set(TS_FILES translations/orion_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp

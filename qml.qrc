@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>Main.qml</file>
+        <file>main.cpp</file>
+        <file>translations/orion_en_US.ts</file>
+        <file>assets/icons/shut-down-fill.svg</file>
+        <file>assets/icons/restart-fill.svg</file>
+        <file>assets/icons/login-circle-fill.svg</file>
+        <file>assets/images/logo.svg</file>
     </qresource>
 </RCC>

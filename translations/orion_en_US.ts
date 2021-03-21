@@ -4,10 +4,6 @@
 <context>
     <name>Main</name>
     <message>
-        <source>Login succeeded</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Login failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -40,7 +36,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Welcome</source>
+        <source>Login succeeded</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
