@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="orion logo" src="brand.svg"/>
+  <img alt="sddm logo" src="brand.svg"/>
 </div>
 
 <h3 align="center"> Minimalist theme for sddm. </h3>

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(orion LANGUAGES CXX)
+project(sddm LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -36,18 +36,18 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(orion
+    qt_add_executable(sddm
         ${PROJECT_SOURCES}
     )
 
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
     if(ANDROID)
-        add_library(orion SHARED
+        add_library(sddm SHARED
             ${PROJECT_SOURCES}
         )
     else()
-        add_executable(orion
+        add_executable(sddm
           ${PROJECT_SOURCES}
         )
     endif()
@@ -55,7 +55,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_compile_definitions(orion
+target_compile_definitions(sddm
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(orion
+target_link_libraries(sddm
   PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)

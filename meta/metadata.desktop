@@ -6,6 +6,6 @@ License=GPL
 Version=0.3
 MainScript=Main.qml
 ConfigFile=theme.conf
-Theme-Id=orion
+Theme-Id=sddm
 Theme-API=2.0
 Website=https://github.com/flateos
